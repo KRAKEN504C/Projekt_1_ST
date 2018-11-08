@@ -116,32 +116,36 @@ int CheckSum(vector<bitset<8>> viktor)
 }
 
 
-void dzielonko(int &bitek) {
-	if (bitek == 0)
-		bitek = 1;
-	else
-		bitek = 0;
+void dzielonko(int &bitki_dzielone) {
+	if (bitki_dzielone == 0) {bitki_dzielone = 1;}
+	else {bitki_dzielone = 0;}
 }
 
 double crc8(const vector<bitset<8>> &viktor) {
 	vector<int> v_bitsetow;
 	vector<int> v_dzielony;
-	/*const*/ bitset<8> dzielnik = 137;
+	/*const*/ bitset<8> dzielnik = 137;//153
 
+	//wprowadzenie wszystkich pojedynczych bitow z vektora g³ównego do vektora v_bitsetowy
 	for (int i = 0; i < viktor.size(); i++) {
 		for (int j = 7; j >= 0; j--) {
 			v_bitsetow.push_back(viktor[i][j]);
 		}
 	}
 
+	//Wprowadzenie dzielnika do vektora v_dzielony jako bitset.
 	for (int i = dzielnik.size() - 1; i >= 0; i--) {
 		v_dzielony.push_back(dzielnik[i]);
+		//cout << "\ndzielnik: " << v_dzielony[i];
 	}
 
-	for (int i = 0; i < dzielnik.size() - 1; i++)
+	//Wprowadzenie n-1 zer do vektora v_bitsetow (n w tym przypadku to 8, ale funkcja jest skonstruowana tak, zeby pasowala do kazdego rodzaju bitsetu (chyba. Nie testowa³em jej zbyt ekstensywnie.))
+	for (int i = 0; i < dzielnik.size() - 1; i++) {
 		v_bitsetow.push_back(0);
+		//cout << "wprowadzono " << i << "zer";
+	}
 
-	//dla wszystkich 4 bitowych pakietów.
+	//dla wszystkich n/2 bitowych pakietów.(w tym przypadku 4 bitowych)
 	for (int i = 0; i <= v_bitsetow.size() - v_dzielony.size(); i++) {
 		//przemieszcz wska¿nik na pierwsz¹ jedynkê.
 		if (v_bitsetow[i] == 1) {

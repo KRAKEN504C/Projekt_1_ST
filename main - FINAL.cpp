@@ -121,7 +121,7 @@ void dzielonko(int &bitki_dzielone) {
 	else {bitki_dzielone = 0;}
 }
 
-double crc8(const vector<bitset<8>> &viktor) {
+double CRC(const vector<bitset<8>> &viktor) {
 	vector<int> v_bitsetow;
 	vector<int> v_dzielony;
 	/*const*/ bitset<8> dzielnik = 137;//153
@@ -202,7 +202,7 @@ int main()
 	cout << "\nas bitset: " << bitset<8>(check);
 
 	//Generowanie CRC
-	double crc = crc8((*viktortBP));
+	double crc = CRC((*viktortBP));
 	cout << "\n\nCRC: " << crc;
 	cout << "\nas bitset: " << bitset<8>(crc);
 
@@ -322,7 +322,7 @@ int main()
 		break;
 	case 2:
 		//Generowanie CRC
-		wynikDobry = crc8((*viktortBP));
+		wynikDobry = CRC((*viktortBP));
 		break;
 	default:
 		break;
